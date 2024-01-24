@@ -83,3 +83,14 @@
     }
   }
 }
+
+
+.triple {
+  display: flex;
+  flex-wrap: wrap;
+  .col {
+    flex: 1;
+    border: 0.25px solid grey;
+    padding: 1rem;
+  }
+}
