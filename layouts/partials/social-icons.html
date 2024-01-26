@@ -1,3 +1,9 @@
 {{ range . -}}
+    {{if strings.HasPrefix .url "/"}}
+    <!-- Relative link -->
+    &nbsp; <a href="{{ .url }}" rel="me noopener {{ .rel }}" title="{{ .name | humanize }}">{{ partial "svg.html" . }}</a> &nbsp;
+    {{else}}
+    <!-- Absolute link (external url) -->
     &nbsp; <a href="{{ .url }}" target="_blank" rel="me noopener {{ .rel }}" title="{{ .name | humanize }}">{{ partial "svg.html" . }}</a> &nbsp;
+    {{end}}
 {{- end -}}
