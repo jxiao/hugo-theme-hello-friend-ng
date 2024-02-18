@@ -12,7 +12,20 @@
         </div>
 
         <article>
-            <h2 class="post-title"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h2>
+            <h2 class="post-title"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a>
+                {{ if .Params.Status }}
+                    {{ $statusMap := index site.Data.colors "status" }}
+                    {{ $status := .Params.status }}
+                    &ensp;
+                    {{ with index $statusMap .Params.Status }}
+                        <div class="status-badge" style="background-color: {{.bgcolor}}; color: {{.color}}">{{ strings.Title $status }}</div>
+                    {{else}}
+                    <div class="status-badge">{{ strings.Title $status }}</div>
+                    {{end}}
+                {{ end }}
+            </h2>
+
+            
 
             {{ if .Params.Cover }}
                 <figure class="post-cover">
